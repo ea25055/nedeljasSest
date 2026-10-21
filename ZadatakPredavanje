@@ -1,0 +1,221 @@
+
+public class vozilo {
+       private String marka;
+       private String model;
+       private int kubikaza;
+       private int godiste;
+       
+       private static float osnovicaZaRegistraciju;
+
+       public static float getOsnovicaZaRegistraciju() {
+		return osnovicaZaRegistraciju;
+	}
+	   public static void setOsnovicaZaRegistraciju(float osnovicaZaRegistraciju) {
+		   vozilo.osnovicaZaRegistraciju = osnovicaZaRegistraciju;
+	   }
+
+
+	   public vozil9 () {
+    	   this (null, null, 0, 1945);
+    	  }
+       
+       
+       public vozilo(String marka, String model, int kubikaza, int godiste) {
+   		super();
+   		this.setMarka = (marka);
+   		this.setModel = (model);
+   		this.setKubikaza = (kubikaza);
+   		this.setGodiste = (godiste);
+   		
+   	}
+   	   public int getGodiste() {
+   		   return godiste;
+   	   }
+   	   public void setGodiste(int godiste) {
+   		   if ( godiste > 1945)
+   		   this.godiste = godiste;
+   	   }
+          
+   	public float dajCijenuRegistracije () {
+   		return 0;
+   	}
+       
+       
+       
+ 
+	   @Override
+	public String toString() {
+		return "vozilo [marka=" + marka + ", model=" + model + ", kubikaza=" + kubikaza + ", godiste=" + godiste + "]";
+	}
+	   public String getMarka() {
+		   return marka;
+	   }
+	   public void setMarka(String marka) {
+		   this.marka = marka;
+	   }
+	   public String getModel() {
+		   return model;
+	   }
+	   public void setModel(String model) {
+		   this.model = model;
+	   }
+	   public int getKubikaza() {
+		   return kubikaza;
+	   }
+	   public void setKubikaza(int kubikaza) {
+		   if(kubikaza >= 0)
+		   this.kubikaza = kubikaza;
+	   }
+	   
+	
+	
+	
+}
+
+
+public class Automobil extends vozilo {
+       private int brojVrata;
+       private int brojOsoba;
+       
+       
+	   public int getBrojVrata() {
+		   return brojVrata;
+	   }
+	   public void setBrojVrata(int brojVrata) {
+		   if (brojVrata >=3)
+		   this.brojVrata = brojVrata;
+	   }
+	   public int getBrojOsoba() {
+		   return brojOsoba;
+	   }
+	   public void setBrojOsoba(int brojOsoba) {
+		   if (brojOsoba >= 2)
+		   this.brojOsoba = brojOsoba;
+	   }
+	   
+	   public Automobil () {
+		   this (null, null, 0, 1945, 3, 2);
+	   }
+	   
+	   public Automobil(String marka, String model, int kubikaza, int godiste, int brojVrata, int brojOsoba) {
+		super(marka, model, kubikaza, godiste);
+		this.setBrojVrata(brojVrata);
+		this.setBrojOsoba(brojOsoba);
+	   }
+	   @Override
+	   public String toString() {
+		return "Automobil [brojVrata=" + brojVrata + ", brojOsoba=" + brojOsoba + ", godiste=" + getGodiste()
+				+ ", marka=" + getMarka() + ", model=" + getModel() + ", kubikaza=" + getKubikaza()
+				+ "]";
+	   }
+	   
+	   @Override
+	   public float dajCijenuRegistracije() {
+	     float cijena;
+	     
+	     cijena = ((float)this.getKubikaza() / 10 + (2026 - this.getGdiste()) * 10 ) * vozilo.get;
+	     
+		return cijena;
+	   }
+	  
+       
+}
+
+public class voziloTest {
+
+	public static void main(String[] args) {
+		
+		Automobil.setOsnovicaZaRegistraciju((float) 6.5);
+		Automobil a = new Automobil ("VW", "Golf", 1496, 2007, 5, 5);
+		System.out.println (a.dajCijenuRegistracije());
+		
+
+	}
+
+}
+public class Motocikl extends vozilo {
+ private float kilometraza;
+
+ public float getKilometraza() {
+	return kilometraza;
+ }
+
+ public void setKilometraza(float kilometraza) {
+	this.kilometraza = kilometraza;
+ }
+ 
+ public Motocikl () {
+	 this (null, null, 0, 1945, 0);
+ }
+
+ public Motocikl(String marka, String model, int kubikaza, int godiste, float kilometraza) {
+	super(marka, model, kubikaza, godiste);
+	this.setKilometraza(kilometraza);
+ }
+
+ @Override
+ public String toString() {
+	return "Motocikl [kilometraza=" + kilometraza + ", getMarka()=" + getMarka() + ", getModel()=" + getModel()
+			+ ", getKubikaza()=" + getKubikaza() + "]";
+ }
+
+ @Override
+ public float dajCijenuRegistracije() {
+	float cijena;
+	cijena = ((float) )
+	return super.dajCijenuRegistracije();
+ }
+ 
+}
+
+
+public class Kamion extends vozilo {
+     private int nosivost;
+public Kamion () {
+	this (null, null, 0, 1945, 0);
+}
+     
+     
+	 @Override
+public String toString() {
+	return "Kamion [nosivost=" + nosivost + ", getGodiste()=" + getGodiste() + ", getMarka()=" + getMarka()
+			+ ", getModel()=" + getModel() + ", getKubikaza()=" + getKubikaza() + "]";
+}
+
+	 
+
+	 @Override
+	public float dajCijenuRegistracije() {
+		float cijena;
+		cijena = ((float)this.getKubikaza() / 10 
+				+ (2026 / this.getGodiste()) * 10)
+				* vozilo.getOsnovicaZaRegistraciju() 
+				+ 30 * this.getNosivost();
+		
+		
+		
+		return cijena;
+	}
+
+
+	 public Kamion(String marka, String model, int kubikaza, int godiste, int nosivost) {
+		super(marka, model, kubikaza, godiste);
+		this.setNosivost(nosivost);
+	}
+
+	 public int getNosivost() {
+		 return nosivost;
+	 }
+
+	 public void setNosivost(int nosivost) {
+		 if (nosivost >= 0)
+		 this.nosivost = nosivost;
+	 }
+     
+}
+
+
+
+
+
+
