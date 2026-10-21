@@ -1,0 +1,326 @@
+
+
+public class Soba {
+	
+	private int brSobe;
+	private int kvadratura;
+	private int brKreveta;
+	private boolean miniBarDaNe;
+	private boolean tvDaNe;
+	private boolean telDaNe;
+	
+	public static double osnovaZaCijenu;
+	
+	public int getBrSobe() {
+		return brSobe;
+	}
+	public void setBrSobe(int brSobe) {
+		if(brSobe>=100 && brSobe<=999) {
+			this.brSobe = brSobe;
+		}else {
+			System.out.println("Greska u unosu sobe");
+			this.brSobe = 0;
+		}
+	}
+	public int getKvadratura() {
+		return kvadratura;
+	}
+	public void setKvadratura(int kvadratura) {
+		this.kvadratura = kvadratura;
+	}
+	public int getBrKreveta() {
+		return brKreveta;
+	}
+	public void setBrKreveta(int brKreveta) {
+		this.brKreveta = brKreveta;
+	}
+	public boolean isMiniBarDaNe() {
+		return miniBarDaNe;
+	}
+	public void setMiniBarDaNe(boolean miniBarDaNe) {
+		this.miniBarDaNe = miniBarDaNe;
+	}
+	public boolean isTvDaNe() {
+		return tvDaNe;
+	}
+	public void setTvDaNe(boolean tvDaNe) {
+		this.tvDaNe = tvDaNe;
+	}
+	public boolean isTelDaNe() {
+		return telDaNe;
+	}
+	public void setTelDaNe(boolean telDaNe) {
+		this.telDaNe = telDaNe;
+	}
+	public Soba(int brSobe, int kvadratura, int brKreveta, boolean miniBarDaNe, boolean tvDaNe, boolean telDaNe) {
+		super();
+		this.setBrSobe(brSobe);
+		this.kvadratura = kvadratura;
+		this.brKreveta = brKreveta;
+		this.miniBarDaNe = miniBarDaNe;
+		this.tvDaNe = tvDaNe;
+		this.telDaNe = telDaNe;
+	}
+	
+	public int dajSprat() {
+		int sprat = brSobe/100;
+		return sprat;
+	}
+	
+	public double izracunajCijenuPoDanu() {
+		int nadnoknadaBar = 0;
+		if(miniBarDaNe == true) nadnoknadaBar = 5;
+		
+		int nadnoknadaTV = 0;
+		if(tvDaNe == true) nadnoknadaTV = 5;
+		
+		int nadnoknadaTel = 0;
+		if(telDaNe == true) nadnoknadaTel = 5;
+		
+		double cijena = osnovaZaCijenu*(kvadratura/10 + 3*brKreveta)+nadnoknadaBar+nadnoknadaTV+nadnoknadaTel;
+		
+		return cijena;
+	}
+	
+	
+	public String infoOSobi() {
+		return "Soba [brSobe=" + brSobe + ", kvadratura=" + kvadratura + ", brKreveta=" + brKreveta + ", miniBarDaNe="
+				+ miniBarDaNe + ", tvDaNe=" + tvDaNe + ", telDaNe=" + telDaNe + "]";
+}
+}
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class SobaTest {
+
+	public static void main(String[] args) {
+
+		Soba.osnovaZaCijenu = 14.8;
+
+		Soba s1 = new Soba(234, 100, 3, false, true, true);
+		Soba s2 = new Soba(434, 20, 1, false, true, true);
+		Soba s3 = new Soba(214, 70, 3, false, true, true);
+
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+		lista.add(4);
+		lista.add(6);
+		lista.add(10);
+		
+		for(Integer i:lista) {
+			System.out.println(i);
+		}
+		
+
+		int[] niz = new int[5];
+		niz[0] = 4;
+		niz[1] = 6;
+		
+		
+		ArrayList<Soba> listaSoba = new ArrayList<Soba>();
+		listaSoba.add(s1);
+		listaSoba.add(s2);
+		listaSoba.add(s3);
+		
+		for(Soba s:listaSoba) {
+			System.out.println(s.infoOSobi());
+		}
+		
+		//stampati samo sobe na 2spratu
+		for(Soba s:listaSoba) {
+			if(s.dajSprat()==2) {
+				System.out.println(s.infoOSobi());
+			}
+		}
+		
+		//izracunati ukupnu zaradu od soba
+		double ukupnaZarada = 0;
+		for(Soba s:listaSoba) {
+			ukupnaZarada = ukupnaZarada+s.izracunajCijenuPoDanu();
+		}
+		System.out.println(ukupnaZarada);
+
+
+	}
+
+}
+
+
+
+import java.util.ArrayList;
+
+public class Student {
+	
+	//atributi klase
+	private String ime;
+	private String prezime;
+	private String brIndex;
+	private double prosjek;
+	
+	public Student() {
+		this.ime=null;
+		this.prezime="";
+		this.brIndex="";
+		this.prosjek=0;
+	}
+	
+	
+	public Student(String ime, String prezime, String brIndex, double prosjek) {
+		this.ime = ime;
+		this.prezime = prezime;
+		this.brIndex = brIndex;
+		this.setProsjek(prosjek);
+	}
+
+
+	public String getIme() {
+		return ime;
+	}
+
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+
+
+	public String getBrIndex() {
+		return brIndex;
+	}
+
+
+	public void setBrIndex(String brIndex) {
+		this.brIndex = brIndex;
+	}
+
+
+	public double getProsjek() {
+		return prosjek;
+	}
+
+
+	public void setProsjek(double prosjek) {
+		if(prosjek>=5 && prosjek<=10) {
+			this.prosjek = prosjek;
+		}else {
+			this.prosjek = 0;
+			System.out.println("Greska u unosu prosjeka");
+		}
+	}
+
+
+	@Override
+	public String toString() {
+		return "Student [ime=" + ime + ", prezime=" + prezime + ", brIndex=" + brIndex + ", prosjek=" + prosjek + "]";
+	}
+	
+	
+	//Napraviti listu studenata
+	
+
+	
+
+}
+
+
+import java.util.ArrayList;
+
+public class testKlasa {
+
+	public static void main(String[] args) {
+
+		int a = 5;
+		double b = 6.5;
+		
+		int c;
+		c = 4;
+		
+		int[] niz = new int[5];
+		niz[1]  = 4;
+		
+		int [] niz1 = {3,2,1,1};
+		
+		
+		Student s1 = new Student();
+		s1.setIme("Marko");
+		s1.setPrezime("Markovic");
+		s1.setProsjek(7.9);
+		s1.setBrIndex("44/19");
+		
+		Student s2 = new Student("Marko","Markovic","44/26",7.9);
+		Student s3 = new Student("Jovana","Markovic","41/26",19.9);
+
+		s2.setProsjek(8.9);
+		
+			
+		System.out.println(s1.getIme()+" "+s1.getPrezime()+" "+s1.getProsjek());
+		System.out.println(s2.getIme()+" "+s2.getPrezime()+" "+s2.getProsjek());
+
+		System.out.println(s3.toString());
+		
+		//Napraviti listu studenata
+		ArrayList<Student> listaStudenata = new ArrayList<Student>();
+		listaStudenata.add(s1);
+		listaStudenata.add(s2);
+		listaStudenata.add(s3);
+		
+		//Stampati sve studente koji imaju prosjek preko 7
+		for(Student s:listaStudenata) {
+			if(s.getProsjek()>7) {
+				System.out.println(s);
+			}
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
