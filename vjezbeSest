@@ -1,0 +1,230 @@
+[ četvrtak, 22. oktobar 2026. 09:52 ] ⁨Sole 🤍⁩: package sestaNedelja;
+
+public class Garderobaa extends vjezbanje {
+
+	private String materijalProizvodnje;
+	private String sezona;
+
+
+
+	public Garderobaa(String opisProizvoda, String barkod, String zemljaProizvodnje, int godinaProizvodnje,
+			double cijena, String materijalProizvodnje, String sezona) {
+		super(opisProizvoda, barkod, zemljaProizvodnje, godinaProizvodnje, cijena);
+		
+		this.materijalProizvodnje = materijalProizvodnje;
+		this.sezona = sezona;
+	}
+	
+	
+	public String getMaterijalProizvodnje() {
+		return materijalProizvodnje;
+	}
+	public void setMaterijalProizvodnje(String materijalProizvodnje) {
+		this.materijalProizvodnje = materijalProizvodnje;
+	}
+	public String getSezona() {
+		return sezona;
+	}
+	public void setSezona(String sezona) {
+		this.sezona = sezona;
+	}
+	
+	public void  izracunajCijenu () {
+		this.setCijena(getCijena()*1.05);
+		// this.cijena = this.getCijena()*1.05;
+	}
+	
+	package sestaNedelja;
+
+import java.time.LocalDate;
+
+public class HemijskiProizvodi extends vjezbanje {
+ private int brojKalorija;
+ private LocalDate datumRokUpotrebe;
+ 
+ 
+ public HemijskiProizvodi(String opisProizvoda, String barkod, String zemljaProizvodnje, int godinaProizvodnje,
+		double cijena, int brojKalorija, LocalDate datumRokUpotrebe) {
+	super(opisProizvoda, barkod, zemljaProizvodnje, godinaProizvodnje, cijena);
+	this.setKalorije(brojKalorija);
+	this.setDatumRokUpotrebe(datumRokUpotrebe);
+	this.brojKalorija = brojKalorija;
+	this.datumRokUpotrebe = datumRokUpotrebe;
+ }
+
+
+ private void setKalorije(int brojKalorija2) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+ public int getBrojKalorija() {
+	 if (brojKalorija > 0)
+		 this.brojKalorija = brojKalorija;
+	return brojKalorija;
+ }
+
+
+ public void setBrojKalorija(int brojKalorija) {
+	this.brojKalorija = brojKalorija;
+ }
+
+
+ public LocalDate getDatumRokUpotrebe() {
+	return datumRokUpotrebe;
+ }
+
+
+ public void setDatumRokUpotrebe(LocalDate datumRokUpotrebe) {
+	this.datumRokUpotrebe = datumRokUpotrebe;
+ }
+	
+	public  void izracunajCijenu () {
+		LocalDate danas = LocalDate.now();
+		if (danas.minusMonths(6).isAfter(datumRokUpotrebe)) {
+			this.setCijena(getCijena ()*1.1);
+		}
+		else {
+			this.setCijena(getCijena()* 1.05);
+		}
+		
+	}
+	
+	
+	
+package sestaNedelja;
+
+public class vjezbanje {
+	private String opisProizvoda;
+	  private  String barkod;
+	  private String zemljaProizvodnje;
+	  private int godinaProizvodnje;
+	  private double cijena;
+	   
+	public vjezbanje(String opisProizvoda, String barkod, String zemljaProizvodnje, int godinaProizvodnje,
+			double cijena) {
+		
+		this.opisProizvoda = opisProizvoda;
+		this.barkod = barkod;
+		this.zemljaProizvodnje = zemljaProizvodnje;
+		this.godinaProizvodnje = godinaProizvodnje;
+		this.cijena = cijena;
+	}
+     
+	
+	public String getOpisProizvoda() {
+		return opisProizvoda;
+	}
+
+	   public void setOpisProizvoda(String opisProizvoda) {
+		   this.opisProizvoda = opisProizvoda;
+	   }
+
+	   public String getBarkod() {
+		   return barkod;
+	   }
+
+	   public void setBarkod(String barkod) {
+		   this.barkod = barkod;
+	   }
+
+	   public String getZemljaProizvodnje() {
+		   return zemljaProizvodnje;
+	   }
+
+	   public void setZemljaProizvodnje(String zemljaProizvodnje) {
+		   this.zemljaProizvodnje = zemljaProizvodnje;
+	   }
+
+	   public int getGodinaProizvodnje() {
+		   return godinaProizvodnje;
+	   }
+
+	   public void setGodinaProizvodnje(int godinaProizvodnje) {
+		   this.godinaProizvodnje = godinaProizvodnje;
+	   }
+
+	   public double getCijena() {
+		   return cijena;
+	   }
+
+	   public void setCijena(double cijena) {
+		   this.cijena = cijena;
+	   }
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
+
+package sestaNedelja;
+
+public class Hrana extends vjezbanje {
+	
+     private float temperaturaSkladistenja;
+     private boolean zapaljivo;
+     
+	 public Hrana(String opisProizvoda, String barkod, String zemljaProizvodnje, int godinaProizvodnje, double cijena,
+			float temperaturaSkladistenja, boolean zapaljivo) {
+		super(opisProizvoda, barkod, zemljaProizvodnje, godinaProizvodnje, cijena);
+		this.temperaturaSkladistenja = temperaturaSkladistenja;
+		this.zapaljivo = zapaljivo;
+	 }
+
+	 public float getTemperaturaSkladistenja() {
+		 return temperaturaSkladistenja;
+	 }
+
+	 public void setTemperaturaSkladistenja(float temperaturaSkladistenja) {
+		 this.temperaturaSkladistenja = temperaturaSkladistenja;
+	 }
+
+	 public boolean isZapaljivo() {
+		 return zapaljivo;
+	 }
+
+	 public void setZapaljivo(boolean zapaljivo) {
+		 this.zapaljivo = zapaljivo;
+	 }
+     
+	public void izraunajCijenu() {
+		if (this.zapaljivo) {
+			this.setCijena(getCijena() * 1.125);
+		}else {
+			this.setCijena(getCijena() * 1.1);
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+}
+	
+	
+}
